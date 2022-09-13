@@ -3,8 +3,8 @@ import Navbar from "./Component/Navbar";
 import Form from "./Component/Form";
 import { useState } from "react";
 import Alert from "./Component/Alert";
-// import { Switch, Route, Link, BrowserRouter, Routes } from "react-router-dom";
-// import About from "./Component/About";
+import { Switch, Route, Link, BrowserRouter, Routes } from "react-router-dom";
+import About from "./Component/About";
 
 function App() {
   const[Mode, setMode]=useState('light');
@@ -36,21 +36,14 @@ function App() {
   return (
     
     <>
-    {/* <BrowserRouter> */}
-    <div>
+    <BrowserRouter>
     <Navbar title="Drakroom" Mode={Mode} toggle={toggle} />
     <Alert alert={alert}/>
-    <Form  Mode={Mode} toggle={toggle} showalert={showalert}/>
-    </div>
-
-    
-      {/* <div>
         <Routes>
           <Route path="/" element={<Form  Mode={Mode} toggle={toggle} showalert={showalert}/>} />
           <Route path="/about" element={<About />} />
         </Routes>
-      </div>
-    </BrowserRouter> */}
+    </BrowserRouter>
     </>
   );
 }

@@ -30,16 +30,31 @@ export default function Form(props){
         newnewtxt(str.join(' '));
         props.showalert("Text converted to Sentencecase", "success");
       }
+      const handleCopy=()=>{
+        var copyText = document.getElementById("exampleFormControlTextarea1");
+       
+        navigator.clipboard.writeText(copyText.value);
+        props.showalert("Copied the text", "success");
+      }
+      const handleClear=()=>{
+        var copyText = document.getElementById("exampleFormControlTextarea1");
+        copyText.value='';
+        nxttext('');
+        newnewtxt('');
+      }
       return(
         <>
     <div className={`container my-3 text-${props.Mode==="light"?"dark":"light"}`}>
     <div className="mb-3">
-  <label htmlFor="exampleFormControlTextarea1" className="form-label">Enter Text below</label>
+  <label htmlFor="exampleFormControlTextarea1" className="form-label display-4 m-2">Text Analyzer-<p className="text-muted display-6">Convert to 
+  UpperCase, LowerCase, SentenceCase</p></label>
   <textarea style={{backgroundColor:props.Mode==="dark"?"#1B262C":"white",color:props.Mode==="dark"?"white":"dark"}}
-  className="form-control" id="exampleFormControlTextarea1" rows="8" placeholder={text} onChange={handlechange}></textarea>
+  className="form-control" id="exampleFormControlTextarea1" rows="8" placeholder="Enter text here" onChange={handlechange}></textarea>
   <button className="btn btn-primary m-2" type="button" onClick={handleclickUC}>To Uppercase</button>
   <button className="btn btn-primary m-2" type="button" onClick={handleclickLC}>To Lowercase</button>
   <button className="btn btn-primary m-2" type="button" onClick={handleclickLine}>SentenceCase</button>
+  <button className="btn btn-primary m-2" type="button" onClick={handleCopy}>Copy to clipboard</button>
+  <button className="btn btn-primary m-2" type="button" onClick={handleClear}>Clear</button>
   </div>
   <div>
     <h3>Summary</h3>
@@ -49,7 +64,8 @@ export default function Form(props){
     <p>{newtxt.length===0?"Enter text and click the desired button to change":newtxt}</p>
   </div>
   <div>
-    <h6>Total number of words are {text.split(' ').length} and total number of letters {text.length} </h6>
+    <p style={{fontSize:'1.5rem'}}>Total number of words are <strong>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length}</strong> and total number of character <strong> {text.length}</strong> </p>
+    <p style={{fontSize:'1.5rem'}}>Average time needed to read <strong>{(text.split(/\s+/).filter((element)=>{return element.length!==0}).length)*0.4} Sec</strong></p>
   </div>
     </div>
 
